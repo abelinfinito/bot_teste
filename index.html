@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <style>
+        /* Reset de estilos básicos */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .btn {
+            text-align: center;
+            background-color: #004400; /* Verde escuro */
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid red;
+            border-radius: 5px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #006600;
+            transform: scale(1.05);
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .btn {
+                font-size: 16px;
+                padding: 12px;
+            }
+            .logo {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="airplane.png" alt="Logo" class="logo">
+        <div class="buttons">
+            <a href="elephantbet.html" class="btn">Elephatbet</a>
+            <a href="primierbet.html" class="btn">Premierbet</a>
+            <a href="bantubet.html" class="btn">Bantubet</a>
+        </div>
+    </div>
+</body>
+</html>

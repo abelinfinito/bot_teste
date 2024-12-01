@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão de velas</title>
+    <style>
+        /* Zera as margens e preenchimentos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* O corpo ocupa 100% da altura e largura */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Altura total da tela */
+            overflow: hidden; /* Evita barras de rolagem */
+        }
+
+        /* Cabeçalho fixo no topo */
+        header {
+            background-color: #f8f9fa; /* Cor de fundo do cabeçalho */
+            color: #333; /* Cor do texto */
+            text-align: flex;
+            width:400px;
+            padding:20px;
+           
+            font-size: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+        }
+
+        /* WebView responsivo (iframe) */
+        iframe {
+            flex: 1; /* Ocupa todo o espaço restante */
+            width: 100%; /* Largura total */
+            border: none; /* Remove bordas */
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho fixo -->
+    <header>
+        <a href="index.html" class="btn">sair</a>
+        <center>
+      <h2>   BANTUBET  </h2>
+       <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align:center;
+            background-color: #1f1f1f;
+            padding:12px;
+            justify-content: space-between;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 230px;
+            margin-top: auto;
+      justify-content: space-between;
+            
+
+      }
+
+     
+
+        h5 {
+            color: white;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color:rgb(202, 42, 42);
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+
+        #preverButton {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #preverButton:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 10px;
+            font-size: 13px;
+            color: white;
+            padding: 10px;
+            background-color: #343a40;
+            border-radius: 5px;
+            display: inline-block;
+            width: 80%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+       
+
+        .history-title {
+            font-size:10 px;
+            margin-bottom: 10px;
+            color: #28a745;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 colunas */
+            gap: 10px;
+        }
+
+        .history-item {
+            font-size: 10px;
+            padding: 10px;
+            text-align: center;
+            background-color: #343a40;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        /* Cores para diferentes faixas de valores */
+        .low-vela {
+            background-color: #007bff; /* Azul para valores baixos */
+        }
+
+        .mid-vela {
+            background-color: #6f42c1; /* Roxo para valores médios */
+        }
+
+        .high-vela {
+            background-color: #dc3545; /* Vermelho para valores altos */
+        }
+    </style>
+</head>
+<body>
+  <div class="bel"> 
+    <div class="container">
+      
+        
+
+
+        
+        <button id="preverButton">Gerar Próxima Vela</button>
+        <div id="resultado" class="result">Analizando...</div>
+   
+       
+      </div>
+      
+  </div>
+       
+    <script>
+        document.getElementById('preverButton').addEventListener('click', function() {
+            const resultadoDiv = document.getElementById('resultado');
+            let valorVela = gerarVela(); // Chama a função para gerar uma vela com base nas probabilidades
+
+            resultadoDiv.innerText = 'Analizando...'; // Exibe uma mensagem temporária enquanto conta
+
+            let contador = 1.00;
+            const intervalo = setInterval(function() {
+                resultadoDiv.innerText = contador.toFixed(2) + "x";
+                contador += 0.10; // Contagem que simula o crescimento da vela
+
+                if (contador >= valorVela) {
+                    clearInterval(intervalo);
+                    resultadoDiv.innerText = valorVela + "x - Saca depois desta vela!";
+                    adicionarHistorico(valorVela); // Adiciona a vela ao histórico
+                }
+            }, 50); // Intervalo de tempo para simular a subida da vela
+        });
+
+        // Função para gerar velas com diferentes probabilidades
+        function gerarVela() {
+            let prob = Math.random(); // Gera um número entre 0 e 1
+            let vela;
+
+            // Distribuição de probabilidades:
+            // - 70% de chance para velas entre 1.00x e 2.00x
+            // - 20% de chance para velas entre 2.00x e 5.00x
+            // - 10% de chance para velas entre 5.00x e 20.00x
+
+            if (prob < 0.7) {
+                // 70% de chance de gerar uma vela entre 1.00x e 2.00x
+                vela = (1 + Math.random()).toFixed(2);
+            } else if (prob < 0.9) {
+                // 20% de chance de gerar uma vela entre 2.00x e 5.00x
+                vela = (2 + Math.random() * 3).toFixed(2);
+            } else {
+                // 10% de chance de gerar uma vela entre 5.00x e 20.00x
+                vela = (5 + Math.random() * 15).toFixed(2);
+            }
+
+            return vela;
+        }
+
+        // Função para adicionar a vela no histórico com cores e layout apropriados
+        function adicionarHistorico(vela) {
+            const historicoDiv = document.getElementById('historicoVelas');
+            const novaVela = document.createElement('div');
+            novaVela.classList.add('history-item');
+
+            if (vela <= 2.00) {
+                novaVela.classList.add('low-vela'); // Azul para valores baixos
+            } else if (vela <= 5.00) {
+                novaVela.classList.add('mid-vela'); // Roxo para valores médios
+            } else {
+                novaVela.classList.add('high-vela'); // Vermelho para valores altos
+            }
+
+            novaVela.innerText = vela + "x";
+            historicoDiv.prepend(novaVela);
+        }
+    </script>
+    </header>
+
+    <!-- WebView com iframe -->
+    <iframe src="http://bantubet.co.ao">
+        Seu navegador não suporta iframes.
+    </iframe>
+</body>
+</html>
